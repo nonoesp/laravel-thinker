@@ -1,6 +1,6 @@
 {
     "name": "nonoesp/thinker",
-    "description": "Simplify your life.",
+    "description": "A Laravel helper package for frequently-used operations—so you don't have to think.",
     "authors": [
         {
             "name": "Nono Martínez Alonso",

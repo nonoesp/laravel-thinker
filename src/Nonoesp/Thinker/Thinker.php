@@ -160,23 +160,6 @@ class Thinker {
 	    return $data[0]->thumbnail_large;
 	}
 
-	public static function displayArticleTags($tags, $class) {
-		$result = '';
-		$idx = 0;
-		foreach($tags as $tag) {
-			/*if($idx > 0) {
-				$result .= ', ';
-			}*/
-			$result .= Thinker::articleTag($tag, $class);
-			$idx++;
-		}
-		return $result;
-	}
-
-	public static function articleTag($tag, $class) {
-		return \HTML::link('/writing/tag/'.\Conner\Tagging\TaggingUtil::slug($tag), $tag, array('class' => $class));
-	}
-
 	/*
 	/
 	/ limitMarkdownText v0.7
@@ -244,26 +227,6 @@ class Thinker {
 			$str = preg_replace('/<'.$tag.'[^>]*>.*?<\/'.$tag.'>/i', '', $str);
 		}
 		return $str;
-	}	
-
-	// ------------------------------------------------------
-	// TODOS
-	// ------------------------------------------------------
-
-	//TODO: Move to Blog Package
-
-	public static function articleCategoryClass($tags, $class) {
-
-		$categories = \Config::get('blog.special-tags');
-
-		foreach($tags as $tag) {
-			$tag = strtolower($tag);
-			if (in_array($tag, $categories)) {
-				echo "";
-				return $class.'--'.$tag.' ';
-			}
-		}
-		return;
-	}	
+	}
 
 }

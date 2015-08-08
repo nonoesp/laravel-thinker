@@ -203,7 +203,11 @@ class Thinker {
 	}
 
 	public static function array_rand_value($array) {
-		return $array[array_rand($array, 1)];
+		if(count($array)) {
+			return $array[array_rand($array, 1)];
+		} else {
+			return '';
+		}
 	}
 
 	public static function HTMLFigure($URL, $caption = false, $class = false) {

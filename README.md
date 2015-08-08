@@ -24,7 +24,6 @@ Add `'Nonoesp/Thinker/ThinkerServiceProvider',` to `providers` in `/app/config/a
 
 Thinker is licensed under the MIT license. (http://opensource.org/licenses/MIT)
 
-
 ## Me
 
 I tweet at [@nonoesp](http://www.twitter.com/nonoesp) and blog at [nono.ma/says](http://nono.ma/says). If you use this package, I would love to hear about it. Thanks!

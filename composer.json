@@ -8,6 +8,16 @@
             "email": "mundowarezweb@gmail.com"
         }
     ],
+    "autoload": {
+        "classmap": [
+            "src/controllers"
+        ],
+        "psr-4": {
+            "Nonoesp\\Thinker\\": "src/"
+        }
+    },
     "minimum-stability" : "dev",
-    "require": {}
+    "require": {
+        "illuminate/support": "~5"
+    }
 }

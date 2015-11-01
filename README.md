@@ -2,6 +2,23 @@
 
 A Laravel helper package for frequently-used operations—so you don't have to think.
 
+## Usage
+
+	composer require nonoesp/thinker:dev
+
+	php artisan vendor:publish --provider="Nonoesp\Thinker\ThinkerServiceProvider" --tag=middleware
+
+Inside `app/Http/Kernel.php` add the following:
+
+```php
+protected $routeMiddleware = [
+    […]
+    'login' => \Arma\Http\Middleware\LoginMiddleware::class,
+];
+```
+
+*Deprecated of version for Laravel 4*
+
 ## Installation
 
 Run `compose require nonoesp/thinker:dev-master`

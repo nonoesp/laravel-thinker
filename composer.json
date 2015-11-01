@@ -1,23 +1,13 @@
 {
-    "name": "nonoesp/thinker",
+    "name": "nono/thinker",
     "description": "A Laravel helper package for frequently-used operations—so you don't have to think.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nono Martínez Alonso",
             "email": "mundowarezweb@gmail.com"
         }
     ],
-    "require": {
-        "php": ">=5.4.0",
-        "illuminate/support": "4.2.*"
-    },
-    "autoload": {
-        "classmap": [
-            "src/migrations"
-        ],
-        "psr-0": {
-            "Nonoesp\\Thinker\\": "src/"
-        }
-    },
-    "minimum-stability": "stable"
+    "minimum-stability" : "dev",
+    "require": {}
 }

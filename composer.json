@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "classmap": [
-            "src/controllers"
+
         ],
         "psr-4": {
             "Nonoesp\\Thinker\\": "src/"

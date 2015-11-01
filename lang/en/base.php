@@ -2,6 +2,6 @@
 
 return [
 
-    'greeting' => 'Hello fucking, world!',
+    'greeting' => 'Hello, world!',
 
 ];

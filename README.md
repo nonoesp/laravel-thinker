@@ -1,6 +1,6 @@
-# Thinker for Laravel 4
+# Thinker for Laravel 5
 
-A Laravel helper package for frequently-used operations—so you don't have to think.
+A Laravel 5 helper package for frequently-used operations—so you don't have to think.
 
 ## Usage
 

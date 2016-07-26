@@ -1,41 +1,42 @@
-# Thinker for Laravel 5
+# A Set of Helpers for Laravel 5
 
-A Laravel 5 helper package for frequently-used operations—so you don't have to think.
-
-## Usage
-
-	composer require nonoesp/thinker:dev
-
-	php artisan vendor:publish --provider="Nonoesp\Thinker\ThinkerServiceProvider" --tag=middleware
-
-Inside `app/Http/Kernel.php` add the following:
-
-```php
-protected $routeMiddleware = [
-    […]
-    'login' => \Arma\Http\Middleware\LoginMiddleware::class,
-];
-```
-
-*Deprecated of version for Laravel 4*
+A Laravel helper package for frequently used operations.
 
 ## Installation
 
-Run `compose require nonoesp/thinker:dev-master`
+Begin by installing this package through Composer. Edit your project’s `composer.json` file to require `nonoesp/thinker`.
 
-Add `'Nonoesp/Thinker/ThinkerServiceProvider',` to `providers` in `/app/config/app.php`
+```
+"require": {
+	"nonoesp/thinker": "5.2.*"
+}
+```
 
-## Changelog
+Next, update Composer from the Terminal:
 
-0.4
+```
+composer update
+```
 
-* Fixed Laravel classes.
+Next, add the new providers to the `providers` array of `config/app.php`:
 
-0.3
+```
+	'providers' => [
+		// ...
+		Nonoesp\Thinker\ThinkerServiceProvider::class,  
+		// ...
+	],
+```
 
-* First release.
-* Added methods from old Helper.
-* Added description.
+Then, add the class aliases to the `aliases` array of `config/app.php`:
+
+```
+	'aliases' => [
+		// ...
+		'Thinker' => Nonoesp\Thinker\Facades\Thinker::class,
+		// ...
+	],
+```
 
 ## License
 
@@ -43,4 +44,4 @@ Thinker is licensed under the MIT license. (http://opensource.org/licenses/MIT)
 
 ## Me
 
-I tweet at [@nonoesp](http://www.twitter.com/nonoesp) and blog at [nono.ma/says](http://nono.ma/says). If you use this package, I would love to hear about it. Thanks!
+I'm [Nono Martínez Alonso](http://nono.ma), an computational designer with a penchant for design, code, and simplicity. I tweet at [@nonoesp](http://www.twitter.com/nonoesp) and write at [Getting Simple](http://gettingsimple.com/). If you use this package, I would love to hear about it. Thanks!

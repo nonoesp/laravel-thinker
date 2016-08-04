@@ -162,6 +162,18 @@ class Thinker {
 	    return $data[0]->thumbnail_large;
 	}
 
+	/**
+	 * Get the URL of an Instagram post
+	 * @param $URL Instagram media URL
+	 * @param $size Instagram media URL (l, m, s, t [thumbnail])
+	 * @return Complete URL
+	*/	
+
+	public static function InstagramImageURL($URL, $size = 'l') {
+		$code = explode('instagram.com/p/', explode("?", $URL)[0])[1];
+		return 'https://instagram.com/p/'.$code.'media/?size='.$size;
+	}
+
 	/*
 	/
 	/ limitMarkdownText v0.7

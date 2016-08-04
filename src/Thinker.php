@@ -162,6 +162,13 @@ class Thinker {
 	    return $data[0]->thumbnail_large;
 	}
 
+	public static function IsInstagramURL($URL) {
+		if( count(explode("instagram.com/", $URL)) > 1 ) {
+			return true;
+		}
+		return false;
+	}
+
 	/**
 	 * Get the URL of an Instagram post
 	 * @param $URL Instagram media URL

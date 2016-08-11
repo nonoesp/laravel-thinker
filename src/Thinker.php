@@ -255,11 +255,14 @@ class Thinker {
 		return $str;
 	}
 
-	public static function StringFromTagList($tagList, $lowerCase = false) {
+	public static function StringFromTagList($tagList, $lowerCase = true, $ShouldAddComma = false) {
 		$index = 0;
 		$str = "";
 		foreach($tagList as $tag) {
-			if($index > 0) $str .= " ";
+			if($index > 0) { 
+				if($ShouldAddComma) $str .= ",";
+				$str .= " ";
+			}
 			if($lowerCase) {
 				$str .= strtolower($tag);
 			} else {

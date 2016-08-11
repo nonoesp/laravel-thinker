@@ -259,11 +259,11 @@ class Thinker {
 		$index = 0;
 		$str = "";
 		foreach($tagList as $tag) {
-			if($index > 0) $str += " ";
+			if($index > 0) $str .= " ";
 			if($lowerCase) {
-				$str += strtolower($tag);
+				$str .= strtolower($tag);
 			} else {
-				$str += $tag;
+				$str .= $tag;
 			}
 			$index++;
 		}

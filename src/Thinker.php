@@ -39,24 +39,16 @@ class Thinker {
 		return $result;
 	}
 
-	public static function uniqueSlugWithTableAndTitle($table, $title) {
+	public static function uniqueSlugWithTableAndTitle($table, $title, $slug_row = 'slug') {
 		$slug_original = Str::slug($title);
 		$slug = $slug_original;
-		$slug_row = 'slug';
- 
 		$slugExists = true;
 		$idx = 0;
 		while($slugExists) {
 			
 			if(\DB::table($table)->where($slug_row, $slug)->count()) {
-				//echo 'This slug exists. -> '.$slug;
-				//echo '<br><br>';
 				$slug = $slug_original.'-'.($idx+2);
-				//echo 'New slug: '.$slug;
-				//echo '<br><br>';
 			} else {
-				//echo 'This slug does not exist ('.$slug.').';
-				//echo '<br><br>';
 				$slugExists = false;
 			}
 			$idx++;		

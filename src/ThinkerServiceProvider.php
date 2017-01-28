@@ -1,6 +1,7 @@
 <?php namespace Nonoesp\Thinker;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Container\Container;
 
 class ThinkerServiceProvider extends ServiceProvider
 {
@@ -33,7 +34,7 @@ class ThinkerServiceProvider extends ServiceProvider
             $this->loadTranslationsFrom($publish_path_lang, 'thinker'); // Load published lang
         } else {
             $this->loadTranslationsFrom(__DIR__ . '/../lang', 'thinker');
-        }  
+        }
     }
 
     /**
@@ -43,22 +44,20 @@ class ThinkerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // Register Controller
-        //$this->app->make('Nonoesp\Thinker\ThinkerController');
 
-        include __DIR__.'/routes.php';
+        // include __DIR__.'/routes.php';
 
         // Create alias
-        $this->app->booting(function()
-        {
-          $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-          $loader->alias('Thinker', 'Nonoesp\Thinker\Facades\Thinker');
-        });
+        // $this->app->booting(function()
+        // {
+        //   $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+        //   $loader->alias('Thinker', 'Nonoesp\Thinker\Facades\Thinker');
+        // });
 
-        // Return alias
-        $this->app['thinker'] = $this->app->share(function($app)
-        {
-        return new Thinker;
-        });
+        $this->app->singleton('thinker', function (Container $app) {
+             return new Thinker();
+         });
+        $this->app->alias('thinker', Thinker::class);
+
     }
 }

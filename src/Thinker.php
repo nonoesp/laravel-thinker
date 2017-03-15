@@ -3,11 +3,11 @@
 use Illuminate\Support\Str;
 
 class Thinker {
- 
+
 
 	/*
 	 * Converts $title to Title Case, and returns the result.
-	 * http://www.sitepoint.com/blogs/2005/03/15/title-case-in-php/ 
+	 * http://www.sitepoint.com/blogs/2005/03/15/title-case-in-php/
 	 *
 	 * Give it a Word Case Title
 
@@ -16,11 +16,11 @@ class Thinker {
 	public static function title($str) {
 		// strtolower > all
 		// $title = strtolower(str_replace('_', ' ', $title));
-		
+
 		// smallWordsArray which shouldn't be capitalised if they aren't the first word.
 		//$smallWordsArray = array( 'of','a','the','and','an','or','nor','but','is','if','then','else','when', 'at','from','by','on','off','for','in','out','over','to','into','with' );
 		$smallWordsArray = array( 'of', 'an','or','nor','but','is','if','then','else','at','from','by','off','for','in','out','over','to','into','with' );
-		
+
 		// Split the string into separate words
 		$words = explode(' ', $str);
 		foreach ($words as $key => $word) {
@@ -45,13 +45,13 @@ class Thinker {
 		$slugExists = true;
 		$idx = 0;
 		while($slugExists) {
-			
+
 			if(\DB::table($table)->where($slug_row, $slug)->count()) {
 				$slug = $slug_original.'-'.($idx+2);
 			} else {
 				$slugExists = false;
 			}
-			$idx++;		
+			$idx++;
 		}
 
 		return $slug;
@@ -75,7 +75,7 @@ class Thinker {
 		$code = explode('v=', $video);
 		$code = $code[1];
 
-		if($code != ''){ 
+		if($code != ''){
 			//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type youtube
 		  return '<p class="[ '.$class.' ]  [ video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="youtube">'
 				  .'<img class="video-thumb__mask" src="/img/video-mask-youtube.png">'
@@ -90,7 +90,7 @@ class Thinker {
 		$code = explode('vimeo.com/', $video);
 		$code = $code[1];
 
-		if($code != ''){ 
+		if($code != ''){
 			//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type vimeo
 		  return '<p class="[ '.$class.' ]  [ video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="vimeo">'
 		    .'<img class="video-thumb__mask" src="/img/video-mask-vimeo.png">'
@@ -98,7 +98,7 @@ class Thinker {
 		    .'</p>';
 		} else {
 		  return '';
-		}    
+		}
 		}
 	}
 
@@ -118,8 +118,8 @@ class Thinker {
 		if ($isYoutube) {
 	  		$code = explode('v=', $video);
 	  		$code = $code[1];
-		
-	  		if($code != ''){ 
+
+	  		if($code != ''){
 				return Thinker::getYoutubeThumb($code);
 	  		} else {
 	    		return '';
@@ -129,12 +129,12 @@ class Thinker {
 		if ($isVimeo) {
 	  		$code = explode('vimeo.com/', $video);
 	  		$code = $code[1];
-		
-	  		if($code != ''){ 
+
+	  		if($code != ''){
 	  			return Thinker::getVimeoThumb($code);
 	  		} else {
 	    		return '';
-	  		}    
+	  		}
 		}
 	}
 
@@ -155,7 +155,7 @@ class Thinker {
 	}
 
 	public static function IsInstagramPostURL($URL) {
-		if( count(explode("instagram.com/", $URL)) > 1 && 
+		if( count(explode("instagram.com/", $URL)) > 1 &&
 			count(explode("media", $URL)) == 1) {
 			return true;
 		}
@@ -167,7 +167,7 @@ class Thinker {
 	 * @param $URL Instagram media URL
 	 * @param $size Instagram media URL (l, m, s, t [thumbnail])
 	 * @return Complete URL
-	*/	
+	*/
 
 	public static function InstagramImageURL($URL, $size = 'l') {
 		$code = explode('instagram.com/p/', explode("?", $URL)[0])[1];
@@ -177,11 +177,11 @@ class Thinker {
 	/*
 	/
 	/ limitMarkdownText v0.7
-	/ 
+	/
 	/ $text				String 	(text to limit)
 	/ $limit 			String 	(maximum amount of characters)
 	/ $ignored_tags		Array 	(tags to ignore, like ['figure', 'img'])
-	/	
+	/
 	*/
 
 	public static function limitMarkdownText($str, $limit, $ignored_tags = false) {
@@ -251,7 +251,7 @@ class Thinker {
 		$index = 0;
 		$str = "";
 		foreach($tagList as $tag) {
-			if($index > 0) { 
+			if($index > 0) {
 				if($ShouldAddComma) $str .= ",";
 				$str .= " ";
 			}
@@ -264,5 +264,21 @@ class Thinker {
 		}
 		return $str;
 	}
+
+  public static function filesFrom($path) {
+
+    if(!is_dir($path))
+      return 'Views directory not found ('.$path.')';
+
+    $files = scandir($path);
+    unset($files[0]); // .
+    unset($files[1]); // ..
+
+    if(($key = array_search('emails', $files)) !== false) {
+      unset($files[$key]);
+    }
+
+    return $files;
+  }
 
 }

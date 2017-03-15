@@ -268,7 +268,7 @@ class Thinker {
   public static function filesFrom($path) {
 
     if(!is_dir($path))
-      return 'Views directory not found ('.$path.')';
+      return [];
 
     $files = scandir($path);
     unset($files[0]); // .

@@ -39,6 +39,27 @@ class Thinker {
 		return $result;
 	}
 
+	public static function uniqueSlugWithTableAndItem($table, $item, $slug_row = 'slug') {
+		$slug_original = Str::slug($item->title);
+		$slug = $slug_original;
+		$slugExists = true;
+		$idx = 0;
+		while($slugExists) {
+
+			if(\DB::table($table)->
+							where($slug_row, $slug)->
+							where('id', '!=', $item->id)->
+							count()) {
+				$slug = $slug_original.'-'.($idx+2);
+			} else {
+				$slugExists = false;
+			}
+			$idx++;
+		}
+
+		return $slug;
+	}
+
 	public static function uniqueSlugWithTableAndTitle($table, $title, $slug_row = 'slug') {
 		$slug_original = Str::slug($title);
 		$slug = $slug_original;

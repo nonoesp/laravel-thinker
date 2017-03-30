@@ -302,4 +302,8 @@ class Thinker {
     return $files;
   }
 
+	public static function contains($needle, $haystack) {
+    return strpos($haystack, $needle) !== false;
+	}
+
 }

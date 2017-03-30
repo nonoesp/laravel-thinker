@@ -306,4 +306,24 @@ class Thinker {
     return strpos($haystack, $needle) !== false;
 	}
 
+	public static function mediatype($filepath) {
+		$filetype = 'NONE';
+		switch(mime_content_type($filepath)) {
+			case "image/jpeg":
+				$filetype = 'IMAGE';
+				break;
+			case "image/png":
+				$filetype = 'IMAGE';
+				break;
+			case "image/gif":
+				$filetype = 'IMAGE';
+				break;
+			case "video/mp4":
+				$filetype = 'VIDEO';
+				break;
+		}
+		return $filetype;
+	}
+
+
 }

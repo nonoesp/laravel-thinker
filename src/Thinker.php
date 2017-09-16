@@ -39,8 +39,12 @@ class Thinker {
 		return $result;
 	}
 
+	public static function slug($str) {
+		return Str::slug(str_replace(".","-",$str));
+	}
+
 	public static function uniqueSlugWithTableAndItem($table, $item, $slug_row = 'slug') {
-		$slug_original = Str::slug($item->title);
+		$slug_original = Thinker::slug($item->title);
 		$slug = $slug_original;
 		$slugExists = true;
 		$idx = 0;
@@ -61,7 +65,7 @@ class Thinker {
 	}
 
 	public static function uniqueSlugWithTableAndTitle($table, $title, $slug_row = 'slug') {
-		$slug_original = Str::slug($title);
+		$slug_original = Thinker::slug($title);
 		$slug = $slug_original;
 		$slugExists = true;
 		$idx = 0;

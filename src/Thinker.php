@@ -82,17 +82,33 @@ class Thinker {
 		return $slug;
 	}
 
+	public static function isYoutubeVideo($video) {
+		if(strpos($video, "youtube.com") != false){
+			return true;
+		} else if (strpos($video, "youtu.be") != false) {
+			return true;
+		}
+		return false;
+	}
+
+	public static function isVimeoVideo($video) {
+		if (strpos($video, "vimeo.com") != false) {
+			return true;
+		}
+		return false;
+	}
+
 	public static function videoWithURL($video, $class) {
 
 		$isYoutube = false;
 		$isVimeo = false;
 
 		if(strpos($video, "youtube.com") != false){
-		$isYoutube = true;
+			$isYoutube = true;
 		} else if (strpos($video, "youtu.be") != false) {
-		$isYoutube = true;
+			$isYoutube = true;
 		} else if (strpos($video, "vimeo.com") != false) {
-		$isVimeo = true;
+			$isVimeo = true;
 		}
 
 		if ($isYoutube) {

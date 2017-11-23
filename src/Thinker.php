@@ -183,6 +183,11 @@ class Thinker {
   		return 'http://img.youtube.com/vi/'.$id.'/0.jpg';
 	}
 
+	public static function get_http_response_code($url) {
+		$headers = get_headers($url);
+		return substr($headers[0], 9, 3);
+	}
+
 	/**
 	 * Gets a vimeo thumbnail url
 	 * @param mixed $id A vimeo id (ie. 1185346)
@@ -190,9 +195,14 @@ class Thinker {
 	*/
 
 	public static function getVimeoThumb($id) {
-	    $data = file_get_contents("http://vimeo.com/api/v2/video/$id.json");
-	    $data = json_decode($data);
-	    return $data[0]->thumbnail_large;
+
+		if(Thinker::get_http_response_code("http://vimeo.com/api/v2/video/$id.json") == "200") {
+			$data = file_get_contents("http://vimeo.com/api/v2/video/$id.json");
+			$data = json_decode($data);
+			return $data[0]->thumbnail_large;
+		}
+		return "";
+
 	}
 
 	public static function IsInstagramPostURL($URL) {

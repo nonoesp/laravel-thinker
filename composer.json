@@ -22,7 +22,10 @@
         "laravel": {
             "providers": [
                 "Nonoesp\\Thinker\\ThinkerServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Thinker": "Nonoesp\\Thinker\\Facades\\Thinker"
+            }
         }
     }
 }

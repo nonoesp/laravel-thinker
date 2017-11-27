@@ -2,22 +2,27 @@
     "name": "nono/thinker",
     "description": "A Laravel helper package for frequently-used operations—so you don't have to think.",
     "license": "MIT",
-    "authors": [
-        {
-            "name": "Nono Martínez Alonso",
-            "email": "mundowarezweb@gmail.com"
-        }
-    ],
+    "authors": [{
+        "name": "Nono Martínez Alonso",
+        "email": "mundowarezweb@gmail.com"
+    }],
     "autoload": {
         "classmap": [
-
+            "src/facades"
         ],
         "psr-4": {
             "Nonoesp\\Thinker\\": "src/"
         }
     },
-    "minimum-stability" : "dev",
+    "minimum-stability": "dev",
     "require": {
         "illuminate/support": "~5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Nonoesp\\Thinker\\ThinkerServiceProvider"
+            ]
+        }
     }
 }

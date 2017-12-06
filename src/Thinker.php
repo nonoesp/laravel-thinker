@@ -10,9 +10,7 @@ class Thinker {
 	 * http://www.sitepoint.com/blogs/2005/03/15/title-case-in-php/
 	 *
 	 * Give it a Word Case Title
-
 	 */
-
 	public static function title($str) {
 		// strtolower > all
 		// $title = strtolower(str_replace('_', ' ', $title));

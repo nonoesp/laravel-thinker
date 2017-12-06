@@ -1,42 +1,20 @@
-# A Set of Helpers for Laravel 5
+# Laravel helpers
 
 A Laravel helper package for frequently used operations.
 
+## Requirements
+
+This package requires Laravel 5.5 or higher.
+
 ## Installation
 
-Begin by installing this package through Composer. Edit your project’s `composer.json` file to require `nonoesp/thinker`.
+You can install the package via composer:
 
-```
-"require": {
-	"nonoesp/thinker": "5.2.*"
-}
+``` bash
+composer require nonoesp/thinker
 ```
 
-Next, update Composer from the Terminal:
-
-```
-composer update
-```
-
-Next, add the new providers to the `providers` array of `config/app.php`:
-
-```
-	'providers' => [
-		// ...
-		Nonoesp\Thinker\ThinkerServiceProvider::class,  
-		// ...
-	],
-```
-
-Then, add the class aliases to the `aliases` array of `config/app.php`:
-
-```
-	'aliases' => [
-		// ...
-		'Thinker' => Nonoesp\Thinker\Facades\Thinker::class,
-		// ...
-	],
-```
+The package will automatically register itself.
 
 ## License
 

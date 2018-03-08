@@ -10,7 +10,9 @@ class Thinker {
 	 * http://www.sitepoint.com/blogs/2005/03/15/title-case-in-php/
 	 *
 	 * Give it a Word Case Title
+
 	 */
+
 	public static function title($str) {
 		// strtolower > all
 		// $title = strtolower(str_replace('_', ' ', $title));
@@ -96,7 +98,7 @@ class Thinker {
 		return false;
 	}
 
-	public static function videoWithURL($video, $class) {
+	public static function videoWithURL($video, $class, $thumbnail = null) {
 
 		$isYoutube = false;
 		$isVimeo = false;
@@ -110,34 +112,48 @@ class Thinker {
 		}
 
 		if ($isYoutube) {
-		$o = '';
-		$code = explode('v=', $video);
-		$code = $code[1];
 
-		if($code != ''){
-			//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type youtube
-		  return '<p class="[ '.$class.' ]  [ video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="youtube">'
-				  .'<img class="video-thumb__mask" src="/img/video-mask-youtube.png">'
-				  .'<img class="video-thumb__image video-thumb__image--youtube" src="http://img.youtube.com/vi/'.$code.'/0.jpg">'
-			 	  .'</p>';
-		} else {
-		  return '';
-		}
-		}
+			$o = '';
+			$code = explode('v=', $video);
+			$code = $code[1];
 
-		if ($isVimeo) {
-		$code = explode('vimeo.com/', $video);
-		$code = $code[1];
+			if($code != '') {
+				//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type youtube
+				$image = 'http://img.youtube.com/vi/'.$code.'/0.jpg';
+				$class_append = '';
+				if($thumbnail) {
+					$image = $thumbnail;
+					$class_append = '-custom';
+				}
+				return '<p class="[ '.$class.' ]  [ o-video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="youtube">'
+						.'<img class="o-video-thumb__mask" src="/img/video-mask-youtube.png">'
+						.'<img class="o-video-thumb__image o-video-thumb__image--youtube'.$class_append.'" src="'.$image.'">'
+						.'</p>';
+			} else {
+				return '';
+			}
 
-		if($code != ''){
-			//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type vimeo
-		  return '<p class="[ '.$class.' ]  [ video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="vimeo">'
-		    .'<img class="video-thumb__mask" src="/img/video-mask-vimeo.png">'
-		    .'<img class="video-thumb__image video-thumb__image--vimeo" src="'.Thinker::getVimeoThumb($code).'">'
-		    .'</p>';
-		} else {
-		  return '';
-		}
+		} else if ($isVimeo) {
+
+			$code = explode('vimeo.com/', $video);
+			$code = $code[1];
+
+			if($code != ''){
+				//TODO: Make a view template with blade View::make('c-video-thumb')->with([$args]) type vimeo
+				$image = Thinker::getVimeoThumb($code);
+				$class_append = '';
+				if($thumbnail) {
+					$image = $thumbnail;
+					$class_append = '-custom';
+				}
+				return '<p class="[ '.$class.' ]  [ o-video-thumb  js-video-thumb ]" data-url="'.$code.'" data-service="vimeo">'
+					.'<img class="o-video-thumb__mask" src="/img/video-mask-vimeo.png">'
+					.'<img class="o-video-thumb__image o-video-thumb__image--vimeo'.$class_append.'" src="'.$image.'">'
+					.'</p>';
+			} else {
+				return '';
+			}
+
 		}
 	}
 

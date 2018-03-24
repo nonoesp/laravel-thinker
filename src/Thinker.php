@@ -13,24 +13,35 @@ class Thinker {
 
 	 */
 
-	public static function title($str) {
-		// strtolower > all
-		// $title = strtolower(str_replace('_', ' ', $title));
+	public static function title($text, $capitalize = false) {
 
-		// smallWordsArray which shouldn't be capitalised if they aren't the first word.
-		//$smallWordsArray = array( 'of','a','the','and','an','or','nor','but','is','if','then','else','when', 'at','from','by','on','off','for','in','out','over','to','into','with' );
-		$smallWordsArray = array( 'of', 'an','or','nor','but','is','if','then','else','at','from','by','off','for','in','out','over','to','into','with' );
+		// smallWordsArray which shouldn't be capitalized if they aren't the first word.
+		//$smallWordsArray = ['of','a','the','and','an','or','nor','but','is','if','then','else','when', 'at','from','by','on','off','for','in','out','over','to','into','with'];
+		$smallWords = ['of', 'an','or','nor','but','is','if','then','else','at','from','by','off','for','in','out','over','to','into','with'];
+		$specialWords = ['iPad', 'iPod', 'iPhone', 'macOS', 'iOS'];
 
 		// Split the string into separate words
-		$words = explode(' ', $str);
+		$words = explode(' ', $text);
 		foreach ($words as $key => $word) {
 
 			// capitalize / ucwords > first or if not smallWordsArray
-			//if ($key == 0 or !in_array($word, $smallwordsarray)) $words[$key] = ucwords($word);
+			if($capitalize) {
+				if ($key == 0 or !in_array($word, $smallWords)) {
+					$words[$key] = ucwords($word);
+				}
+			}
 
+			// Set words that shouldn't be capitalized to lowercase
 			// strtolower > smallWordsArray
-			if ( $key != 0 and in_array(strtolower($word), $smallWordsArray) ) $words[$key] = strtolower($word);
+			if ($key != 0 && in_array(strtolower($word), $smallWords)) {
+				$words[$key] = strtolower($word);
+			}
 
+			// Set special words to their original form
+			if(in_array(strtolower($word), array_map("strtolower", $specialWords))) {
+				$index = array_search(strtolower($word), array_map("strtolower", $specialWords));
+				$words[$key] = $specialWords[$index];
+			}
 		}
 
 		// Join the words back into a string

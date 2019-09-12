@@ -16,7 +16,7 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "~5"
+        "illuminate/support": "~6"
     },
     "extra": {
         "laravel": {
